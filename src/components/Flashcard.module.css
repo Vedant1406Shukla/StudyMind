@@ -1,0 +1,102 @@
+.cardOuter {
+  perspective: 1000px;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border-radius: var(--radius-lg);
+}
+
+.scene:hover .front {
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.12), var(--shadow-card);
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border: 1px solid var(--bg-glass-border);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* The front and back need explicit min-height so the outer div expands */
+.face {
+  min-height: 200px;
+}
+
+.front {
+  background: var(--bg-card);
+}
+
+.back {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(168, 85, 247, 0.06) 100%);
+  border-color: rgba(124, 58, 237, 0.2);
+  transform: rotateY(180deg);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardNum {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.text {
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+}
+
+.flipHint {
+  display: flex;
+  justify-content: center;
+  min-height: 24px;
+}
+
+.tapHint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+/* Keyboard focus visible on the scene */
+.scene:focus-visible {
+  outline: 2px solid var(--accent-secondary);
+  outline-offset: 3px;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    transition: none;
+  }
+}
