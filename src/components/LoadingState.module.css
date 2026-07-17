@@ -1,0 +1,119 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Shimmer base ── */
+.skeleton {
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.09) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* ── Header skeletons ── */
+.headerSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.skeletonBadge {
+  width: 80px;
+  height: 20px;
+  border-radius: var(--radius-full);
+}
+
+.skeletonTitle {
+  width: 260px;
+  max-width: 70%;
+  height: 28px;
+}
+
+.skeletonSub {
+  width: 180px;
+  max-width: 50%;
+  height: 16px;
+}
+
+/* ── Card skeleton ── */
+.cardSkeleton {
+  padding: var(--space-6);
+  animation: fadeIn 0.4s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cardSkeletonInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.skeletonBadgeSm {
+  width: 60px;
+  height: 18px;
+  border-radius: var(--radius-full);
+}
+
+.skeletonLines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.skeletonLine {
+  height: 14px;
+}
+
+.skeletonLineFull  { width: 100%; }
+.skeletonLine80    { width: 80%; }
+.skeletonLine60    { width: 60%; }
+
+/* ── Dots loading indicator ── */
+.hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  color: var(--text-muted) !important;
+  font-size: 0.875rem;
+  padding-top: var(--space-2);
+}
+
+.dots {
+  display: flex;
+  gap: 4px;
+}
+
+.dots span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-secondary);
+  animation: bounce 1.2s ease infinite;
+}
+
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
+  40%            { transform: scale(1);   opacity: 1; }
+}
